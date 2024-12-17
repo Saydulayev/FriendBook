@@ -19,6 +19,10 @@ This project is a solution to the "FriendBook" challenge from Paul Hudson’s "1
 - **Performance and UX Considerations:**  
   Checks if the data has already been loaded before performing a new fetch, reducing unnecessary network calls and improving performance.
 
+- **Custom Decoding/Encoding with CodingKeys:**
+  Demonstrates manual control over the `Codable` process by providing custom `CodingKeys` and implementing `init(from:)` and `encode(to:)` methods for `User` and `Friend` structs.
+
+
 ## Technologies Used
 
 - SwiftUI
