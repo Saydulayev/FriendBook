@@ -35,6 +35,14 @@ This project is a solution to the "FriendBook" challenge from Paul Hudson’s "1
 - NavigationStack & List for UI
 - Observable State Management (e.g., `@Observable` from Swift 5.9 or `@Published` in earlier versions)
 
+## Branches
+
+- **main**:  
+  Uses automatic `Codable` conformance without manually specifying `CodingKeys` or a custom `init(from:)`. The Swift compiler generates these for you.
+
+- **feature/custom-coding-keys**:  
+  Demonstrates a more manual approach by specifying custom `CodingKeys` and implementing the `init(from:)` and `encode(to:)` methods explicitly for `User` and `Friend` structs.
+
 
 ## How to Run
 
