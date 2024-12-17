@@ -137,6 +137,6 @@ struct UserDetailView: View {
 
 
 
-#Preview {
-    UserDetailView(user: User.init(id: UUID(), name: "Saydulayev", age: 25, company: "SwiftUI", email: "saydulayev@gmail.com", isActive: true, registered: Date(), tags: ["SwiftUI", "UIKit", "SwiftUI"], friends: []))
-}
+//#Preview {
+//    UserDetailView(user: User.init(id: UUID(), name: "Saydulayev", age: 25, company: "SwiftUI", email: "saydulayev@gmail.com", isActive: true, registered: Date(), tags: ["SwiftUI", "UIKit", "SwiftUI"], friends: []))
+//}
