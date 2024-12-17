@@ -1,3 +1,10 @@
+#### Preview
+
+<p align="center">
+  <img src="https://github.com/Saydulayev/FriendBook/blob/feature/custom-coding-keys/FriendBook/Sreen./Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-12-17%20at%2013.23.36.png" width="300">
+  <img src="https://github.com/Saydulayev/FriendBook/blob/feature/custom-coding-keys/FriendBook/Sreen./Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202024-12-17%20at%2013.24.07.png" width="300">
+</p>
+
 # FriendBook Challenge Project
 
 This project is a solution to the "FriendBook" challenge from Paul Hudson’s "100 Days of SwiftUI." It demonstrates fetching JSON data from a remote server, decoding it into Swift models using `Codable`, and displaying it in a SwiftUI interface using `NavigationStack`, `List`, and detail views.
