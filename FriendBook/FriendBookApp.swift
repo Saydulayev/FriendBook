@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct FriendBookApp: App {
@@ -13,5 +14,6 @@ struct FriendBookApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [User.self, Friend.self])
     }
 }

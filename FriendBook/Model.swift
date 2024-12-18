@@ -6,17 +6,23 @@
 //
 
 import Foundation
+import SwiftData
 
-
-struct Friend: Codable, Identifiable {
-    let id: UUID
-    let name: String
+@Model
+class Friend: Codable {
+    var id: UUID
+    var name: String
+    
+    init(id: UUID, name: String) {
+        self.id = id
+        self.name = name
+    }
 
     enum CodingKeys: String, CodingKey {
         case id, name
     }
 
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
@@ -29,22 +35,35 @@ struct Friend: Codable, Identifiable {
     }
 }
 
-struct User: Codable, Identifiable {
-    let id: UUID
-    let name: String
-    let age: Int
-    let company: String
-    let email: String
-    let isActive: Bool
-    let registered: Date
-    let tags: [String]
-    let friends: [Friend]
+@Model
+class User: Codable {
+    var id: UUID
+    var name: String
+    var age: Int
+    var company: String
+    var email: String
+    var isActive: Bool
+    var registered: Date
+    var tags: [String]
+    var friends: [Friend]
+    
+    init(id: UUID, name: String, age: Int, company: String, email: String, isActive: Bool, registered: Date, tags: [String], friends: [Friend]) {
+        self.id = id
+        self.name = name
+        self.age = age
+        self.company = company
+        self.email = email
+        self.isActive = isActive
+        self.registered = registered
+        self.tags = tags
+        self.friends = friends
+    }
 
     enum CodingKeys: String, CodingKey {
         case id, name, age, company, email, isActive, registered, tags, friends
     }
 
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
