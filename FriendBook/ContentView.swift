@@ -47,7 +47,7 @@ struct ContentView: View {
                     Menu("Sort", systemImage: "line.horizontal.3.decrease.circle") {
                         Picker("Sort by", selection: $sortOrder) {
                             Text("Name").tag(SortDescriptor(\User.name))
-                            Text("Age (Descending)").tag(SortDescriptor(\User.age))
+                            Text("Age").tag(SortDescriptor(\User.age))
                             Text("Registered").tag(SortDescriptor(\User.registered))
                         }
                         .onChange(of: sortOrder) {newValue, oldValue in
