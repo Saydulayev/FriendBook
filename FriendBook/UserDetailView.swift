@@ -40,7 +40,7 @@ struct UserDetailView: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(.ultraThinMaterial)
+                .background(Color(.tertiarySystemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
 
