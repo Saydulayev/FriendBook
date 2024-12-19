@@ -5,15 +5,19 @@
 //  Created by Saydulayev on 17.12.24.
 //
 
+
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
-    @State private var dataLoader = DataLoader()
+    @Environment(\.modelContext) var modelContext
+    @Query(sort: [SortDescriptor(\User.name)]) private var allUsers: [User]
+    @State private var sortOrder: SortDescriptor<User> = SortDescriptor(\User.name)
+    @State private var sortedUsers: [User] = []
 
     var body: some View {
         NavigationStack {
-            // Проверка, загружены ли данные
-            if dataLoader.users.isEmpty {
+            if sortedUsers.isEmpty {
                 VStack {
                     ProgressView("Loading users...")
                         .progressViewStyle(CircularProgressViewStyle())
@@ -25,7 +29,7 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 List {
-                    ForEach(dataLoader.users) { user in
+                    ForEach(sortedUsers) { user in
                         NavigationLink(destination: UserDetailView(user: user)) {
                             HStack {
                                 Circle()
@@ -39,18 +43,49 @@ struct ContentView: View {
                 }
                 .listStyle(.plain)
                 .navigationTitle("Users")
+                .toolbar {
+                    Menu("Sort", systemImage: "line.horizontal.3.decrease.circle") {
+                        Picker("Sort by", selection: $sortOrder) {
+                            Text("Name").tag(SortDescriptor(\User.name))
+                            Text("Age (Descending)").tag(SortDescriptor(\User.age))
+                            Text("Registered").tag(SortDescriptor(\User.registered))
+                        }
+                        .onChange(of: sortOrder) {newValue, oldValue in
+                            sortUsers()
+                        }
+                    }
+                }
+
             }
         }
-        .task {
-            await dataLoader.fetchData()
+        .onAppear {
+            sortUsers()
         }
+        .task {
+            let dataLoader = DataLoader(context: modelContext)
+            await dataLoader.fetchData()
+            sortUsers() // Обновляем данные после загрузки
+        }
+    }
+
+    private func sortUsers() {
+        sortedUsers = allUsers.sorted(using: [sortOrder])
     }
 }
 
-
-
-
-
 #Preview {
     ContentView()
+        .modelContainer(for: [User.self, Friend.self])
 }
+
+
+
+
+
+
+
+
+
+
+
+
